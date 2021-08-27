@@ -1,0 +1,83 @@
+﻿{% extends 'societymember/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        {% block title %}
+        <title>Suggestions List - Digital Society</title>
+        {% endblock %}
+        
+        {% block css %}        
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\blog.css' %}">
+                <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+        {% endblock %}
+    </head>
+        {% block content %}
+        <!-- Right Sidebar -->
+        <section class="content home" style="margin-top: 38px;">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Suggestions List <small class="text-muted">Welcome to Digital Society</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'm_index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                            <li class="breadcrumb-item">Suggestions</li>
+                                                                                        <li class="breadcrumb-item active">Suggestions List</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                <div class="blog-page">
+    <div class="row">
+        <div class="col-lg-8 col-md-12 left-box">
+            {% for i in context.suggestData %}
+            <div class="card single_post">
+                <div class="body">
+                    <h3 class="m-t-0 m-b-5" style="color: rgba(0, 0, 255, 0.863);"> {{i.suggestion_title}}</h3>
+                    <ul class="meta">
+                        <li><h6><a href="#"><i class="zmdi zmdi-account col-blue"></i> Posted By: {{i.suggested_by}}</a></h6></li>
+                        <li><h6><a href="#"><i class="zmdi zmdi-label-alt col-red"></i> {{i.whenpublished}}</a></h6></li>
+                    </ul>
+                </div>
+                <div class="body">
+                   
+                    <p><strong>{{i.suggestion_desc}}</strong></p>
+                    <a href="{% url 'del-suggestion' pk=i.id %}" title="read more" class="btn btn-round btn-info">Delete Suggestion</a>                        
+                </div>                    
+               
+            </div>
+            {% endfor %}                                              
+        </div>    
+    </div>
+</div>
+            </div>
+        </section>
+        {% endblock %}
+                <!-- Scripts -->
+        <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+                		<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>

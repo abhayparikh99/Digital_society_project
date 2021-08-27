@@ -1,0 +1,286 @@
+﻿{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Maintenance List - Digital Society</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+                
+                
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\jquery-datatable\dataTables.bootstrap4.min.css' %}">
+                <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+            </head>
+        <body class="theme-blue">
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="m-t-30"><img class="zmdi-hc-spin" src="{% static 'chairman\assets\images\logo.svg' %}" width="48" height="48" alt="Oreo"></div>
+                <p>Please wait...</p>        
+            </div>
+        </div>
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <nav class="navbar p-l-5 p-r-5">
+    <ul class="nav navbar-nav navbar-left">
+        <li>
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="{% url 'm_index' %}"><img src="{% static 'chairman\assets\images\logo.svg' %}" class="zmdi-hc-spin" width="30" alt="Oreo"><span class="m-l-10">Digital Society</span></a>
+            </div>
+        </li>
+        <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap"></i></a></li>
+        <li class="d-none d-md-inline-block">
+        
+        </li>        
+        <li class="float-right">
+            <a href="{% url 'm_logout' %}" class="mega-menu" data-close="true"><i class="zmdi zmdi-power" title="logout"></i></a>
+        </li>
+    </ul>
+</nav>        <!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar" style="color: white; background-color: black;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dashboard"><i class="zmdi zmdi-home m-r-5"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#user">Member</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane stretchRight active" id="dashboard">
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <div class="user-info">
+                            <div class="image"><a href="{% url 'sm_profile' %}"><img src="{{context.member_id.profile_pic.url}}" alt="User"></a></div>
+                            <div class="detail">
+                                <h4>Welcome</h4>
+                                <h4>{{context.member_id.fname}} {{context.member_id.lname}}</h4>
+                                <small>{{context.uid.role}}</small>                       
+                            </div>
+                        </div>
+                    </li>   
+                    <li class="header">MAIN</li>
+                    
+                    <li class="active open"><a href="{% url 'm_index' %}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>            
+                    <li class=""><a href="{% url 'sm_profile' %}"><i class="zmdi zmdi-account-o"></i><span>Profile</span></a></li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-file-text"></i><span>Notice</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm-view-notice' %}">View Notice</a></li>                          
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-accounts-add"></i><span>Members</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm-view-member' %}">View Members</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Events</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm-view-event' %}">View Events</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-comment-alert"></i><span>Complaint</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm_add_complaint_page' %}">Add Complaint</a></li>
+                            <li class=""><a href="{% url 'm_view_complaint' %}">View Complaints</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-comment-text"></i><span>Suggestions</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'add_suggestion_page' %}">Add Suggestion</a></li>
+                            <li class=""><a href="{% url 'view_suggestions' %}">View Suggestions</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-collection-video"></i><span>Media</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm_view_images' %}">View Images</a></li>
+                            <li class=""><a href="{% url 'm_view_videos' %}">View Videos</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-money"></i><span>Maintenance</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm_view_maintenance' %}">Maintenance List</a></li>
+                            <li class=""><a href="{% url 'm_pay_maintenance' %}">Pay Maintenance</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-walk"></i><span>Watchmans</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm_watchman_list' %}">View Watchmans</a></li>                            
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-male-female"></i><span>Visitors</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'm_view_visitors' %}">View Visitors</a></li>                            
+                        </ul>
+                    </li>                    
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane stretchLeft" id="user">
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <div class="user-info m-b-20 p-b-15">
+                            <div class="image"><a href="{% url 'sm_profile' %}"><img src="{{context.member_id.profile_pic.url}}" alt="User"></a></div>
+                            <div class="detail">
+                                <h4>{{context.member_id.fname}} {{context.member_id.lname}}</h4>
+                                <small>{{context.uid.role}}</small>                        
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <small class="text-muted">Name: </small>
+                        <p>{{context.member_id.fname}}</p>
+                        <hr>
+                        <small class="text-muted">Surname: </small>
+                        <p>{{context.member_id.lname}}</p>
+                        <hr>
+                        <small class="text-muted">Email address: </small>
+                        <p>{{context.uid.email}}</p>
+                        <hr>
+                    </li>                    
+                </ul>
+            </div>
+        </div>
+    </div>    
+</aside>
+        <!-- Right Sidebar -->
+        <section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Maintenance List <small class="text-muted">Welcome to Digital Society</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'm_index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                            <li class="breadcrumb-item">Maintenance</li>
+                                                                                        <li class="breadcrumb-item active">Maintenance List</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Maintenance</strong> List</h2>
+                </div>
+                <div class="body">
+                    <ul class="nav nav-tabs padding-0">
+                        <li class="nav-item"><a class="nav-link active" style="color: rgba(100, 188, 223);" data-toggle="tab" href="#pending"><strong style="color: rgb(62,172,255);">Maintenance Pending</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: rgb(100, 188, 223);" data-toggle="tab" href="#paid"><strong style="color: rgb(62,172,255);">Maintenance Paid</strong></a></li>
+                    </ul>
+                    <div class="tab-content m-t-10">
+                        <div class="tab-pane table-responsive active" id="pending">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Amount</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>For Payment</th>
+                                    </tr>
+                                </thead>
+                                {% for i in context.mid %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{i.id}}</td>
+                                        <td>{{i.member_id.fname}} {{i.member_id.lname}}</td>
+                                        <td>{{i.title}}</td>
+                                        <td>{{i.amount}}</td>
+                                        <td>{{i.due_date}}</td>
+                                        {% if i.status == "Pending" %}
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                        <td><a href="{% url 'initiate_payment' pk=i.id %}"><button type="button" class="btn btn-success">Pay Now</button></a></td>
+                                        {% else %}
+                                        <td><span class="badge badge-success">Paid</span></td>
+                                        {% endif %}
+                                        
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div class="tab-pane table-responsive" id="paid">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Amount</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                {% for i in context.mid_paid %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{i.id}}</td>
+                                        <td>{{i.member_id.fname}} {{i.member_id.lname}}</td>
+                                        <td>{{i.title}}</td>
+                                        <td>{{i.amount}}</td>
+                                        <td>{{i.due_date}}</td>
+                                        {% if i.status == "Pending" %}
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                        {% else %}
+                                        <td><span class="badge badge-success">Paid</span></td>
+                                        {% endif %}        
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+        </section>
+                <!-- Scripts -->
+    <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+    <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+    <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+    <script src="{% static 'chairman\assets\bundles\datatablescripts.bundle.js' %}"></script>
+    <script src="{% static 'chairman\assets\js\pages\tables\jquery-datatable.js' %}"></script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>

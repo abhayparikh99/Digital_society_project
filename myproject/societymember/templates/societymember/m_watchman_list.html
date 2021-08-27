@@ -1,0 +1,160 @@
+﻿{% extends 'societymember/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        {% block title %}
+        <title>All Watchmans - Digital Society</title>
+        {% endblock %}
+        
+        {% block css %}       
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+                        <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+        {% endblock %}
+            </head>
+        {% block content %}
+        <section class="content home" style="margin-top: 38px;">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>All Watchmans <small class="text-muted">Welcome to Digital Society</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'm_index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                            <li class="breadcrumb-item">Member</li>
+                                                                                        <li class="breadcrumb-item active">All Watchman</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="card patients-list">
+                <div class="header">
+                    <h2><strong>Watchman</strong> List</h2>
+                </div>
+                <div class="body">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs padding-0">
+                        <li class="nav-item"><a class="nav-link active" style="color: dodgerblue;" data-toggle="tab" href="#approved"><strong style="color: rgb(62,172,255);">Watchman's Approved</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: dodgerblue;" data-toggle="tab" href="#pending"><strong style="color: rgb(62,172,255);">Watchman's Pending</strong></a></li>
+                    </ul>
+                        
+                    <!-- Tab panes -->
+                    <div class="tab-content m-t-10">
+                        <div class="tab-pane table-responsive active" id="approved">
+                            <table class="table m-b-0 table-hover">
+                                <thead>
+                                    <tr>                                       
+                                        <th>Sr.No</th>
+                                        <th>Profile Pic</th>
+                                        <th>Full Name</th>
+                                        <th>Age</th>
+                                        <th>Address</th>
+                                        <th>Contact No.</th>
+                                        <th>Email Address</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                {% for i in context.wid %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{i.id}}</td>
+                                        <td><span class="list-icon"><img class="patients-img" src="{{i.profile_picture.url}}" alt=""></span></td>
+                                        <td><span class="list-name">{{i.fname}} {{i.lname}}</span></td>
+                                        <td>{{i.age}}</td>
+                                        <td>{{i.address}}</td>
+                                        <td>{{i.contact_no}}</td>
+                                        <td>{{i.email}}</td>
+                                        <td>
+                                            {% if "Pending" in i.status %}
+                                            <span class="badge badge-warning">Pending</span>
+                                            {% endif %}
+                                            {% if "Rejected" in i.status %}
+                                            <span class="badge badge-danger">Rejected</span>
+                                            {% endif %}
+                                            {% if "Approved" in i.status %}
+                                            <span class="badge badge-success">Approved</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>                            
+                        </div>
+                        <div class="tab-pane table-responsive" id="pending">
+                            <table class="table m-b-0 table-hover">
+                                <thead>
+                                    <tr>                                       
+                                        <th>Sr.No</th>
+                                        <th>Profile Pic</th>
+                                        <th>Full Name</th>
+                                        <th>Age</th>
+                                        <th>Address</th>
+                                        <th>Contact No.</th>
+                                        <th>Email Address</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                {% for i in context.wid_pending %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{i.id}}</td>
+                                        <td><span class="list-icon"><img class="patients-img" src="{{i.profile_picture.url}}" alt=""></span></td>
+                                        <td><span class="list-name">{{i.fname}} {{i.lname}}</span></td>
+                                        <td>{{i.age}}</td>
+                                        <td>{{i.address}}</td>
+                                        <td>{{i.contact_no}}</td>
+                                        <td>{{i.email}}</td>
+                                        <td>
+                                            {% if "Pending" in i.status %}
+                                            <span class="badge badge-warning">Pending</span>
+                                            {% endif %}
+                                            {% if "Rejected" in i.status %}
+                                            <span class="badge badge-danger">Rejected</span>
+                                            {% endif %}
+                                            {% if "Approved" in i.status %}
+                                            <span class="badge badge-success">Approved</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+        </section>
+        {% endblock %}
+                <!-- Scripts -->
+        <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+                		<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>

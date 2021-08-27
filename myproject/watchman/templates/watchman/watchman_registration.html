@@ -1,0 +1,122 @@
+﻿{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Watchman Register - Digital Society</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+        
+        
+        
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        
+        <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\authentication.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+
+        
+    </head>
+    
+    
+        <body class="theme-cyan authentication sidebar-collapse">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
+            <div class="container">        
+                <div class="navbar-translate n_logo">
+                    <a class="navbar-brand" href="{% url 'login-page'%}" title="login" target="_self">Digital Society</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-header">
+            <div class="page-header-image" style="background-image:url({% static 'chairman/assets/images/login.jpg' %})"></div>
+
+            <div class="container">
+    <div class="col-md-12 content-center">
+        <div class="card-plain">
+            <form  action="{% url 'send_approval' %}" class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="header">
+                    <div class="logo-container">
+                        <img src="{% static 'chairman\assets\images\logo.svg' %}" alt="">
+                    </div>
+                    <h6>Register For Place of Watchman</h6>
+                    <!-- <span><strong> Register For Place of Watchman </strong></span> -->
+                </div>
+                <div class="content">                                                
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-account-circle"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-account-circle"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="form-control" name="email" placeholder="Enter Email">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-email"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter Address"  name="address" class="form-control">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-city"></i>
+                        </span>
+                    </div> 
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="age" placeholder="Enter Age">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-account-circle"></i>
+                        </span>
+                    </div>      
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="contact_no" placeholder="Enter Contact Number">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-phone"></i>
+                        </span>
+                    </div>                 
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="family_contact_no" placeholder="Enter Family Contact Number">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-phone"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="profile_picture" placeholder="Enter Your Picture">
+                        <span class="input-group-addon">
+                            <i class="zmdi zmdi-attachment"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="footer text-center">
+                    <input type="submit" class="btn btn-primary btn-round btn-lg btn-block waves-effect waves-light" value="SEND REQUEST FOR APPROVAL">
+                    <h5><a class="link" href="{% url 'login-page'%}">You already have approval for the place?</a></h5>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+            <footer class="footer">
+               
+            </footer>
+            
+        </div>
+
+        <!-- Scripts -->
+        <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+                
+    </body>
+</html>

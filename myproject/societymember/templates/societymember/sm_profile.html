@@ -1,0 +1,200 @@
+﻿{% extends 'societymember/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        {% block title %}
+        <title>{{context.mid.fname}} {{context.mid.lname}}'s Profile - Digital Society</title>
+        {% endblock %}
+        
+        {% block css %}       
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\timeline.css' %}">
+                <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+        {% endblock %}
+            </head>
+        {% block content %}
+        <!-- Right Sidebar -->
+        <section class="content home" style="margin-top: 38px;">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Profile <small class="text-muted">Welcome to Digital Society</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'm_index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                            <li class="breadcrumb-item">Member</li>
+                                                                                        <li class="breadcrumb-item active">Profile</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix profile-page">
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="body text-center">
+                    <div class="profile-image"> <img src="{{context.mid.profile_pic.url}}" alt=""> </div>
+                    <div>
+                        <h4 class="m-b-0"><strong>{{context.mid.fname}} {{context.mid.lname}}</strong></h4>
+                        <span class="job_post">{{context.uid.role}}</span>
+                        <p>{{context.mid.m_id.address}}</p>
+                    </div>
+                </div>                    
+            </div>                                              
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about"><strong style="color: rgb(62,172,255);">About</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#account"><strong style="color: rgb(62,172,255);">Account</strong></a></li>                      
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane body active" id="about">
+                        <ul class="list-unstyled">
+                            <li>
+                                <p><strong>Name:</strong> {{context.mid.fname}} {{context.mid.lname}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Address:</strong> {{context.mid.m_id.address}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Email Address:</strong> {{context.uid.email}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Contact No:</strong> {{context.mid.m_id.contact_no}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Flat No:</strong> {{context.mid.m_id.homeno}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Job Profession:</strong> {{context.mid.m_id.job_profession}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Job Address:</strong> {{context.mid.m_id.job_address}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Vehicle Type:</strong> {{context.mid.m_id.vehicle_type}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Vehicle No:</strong> {{context.mid.m_id.vehicle_no}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Blood Group:</strong> {{context.mid.m_id.blood_group}}</p>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    <div class="tab-pane body" id="Account">
+                        <form action="{% url 'm-profile-update' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Email" value="{{context.uid.email}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Current Password" name="password" value="{{context.uid.password}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="newpassword" placeholder="New Password">
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="fname" value="{{context.mid.fname}}" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="lname" value="{{context.mid.lname}}" placeholder="Last Name">
+                                </div>
+                            </div>       
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="address" value="{{context.mid.m_id.address}}" placeholder="Professional Address">
+                                </div>
+                            </div>  
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Vehicle Type" name="vehicle_type" value="{{context.mid.m_id.vehicle_type}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Vehicle No." name="vehicle_no" value="{{context.mid.m_id.vehicle_no}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Blood Group" name="blood_group" value="{{context.mid.m_id.blood_group}}">
+                                </div>
+                            </div>                                            
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Job Profession" name="jobprofession" value="{{context.mid.m_id.job_profession}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="houseno" placeholder="House No." value="{{context.mid.m_id.homeno}}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="contact_no" placeholder="Contact No." value="{{context.mid.m_id.contact_no}}">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>&emsp; <strong style="color: darkturquoise;">Professional Address</strong></label>
+                                    <input type="text" class="form-control" name="job_address" value="{{context.mid.m_id.job_address}}" placeholder="Professional Address">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>&emsp; <strong style="color: darkturquoise;"> Profile Pic Update</strong></label>
+                                    <input type="file" class="form-control" name="profilepic" placeholder="Profile Pic">
+                                </div>
+                            </div>                            
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary btn-round" value="Save Changes">
+                            </div>
+                        </form>
+                        
+                        
+                        </div>
+                    </div>                        
+                </div>
+            </div>           
+        </div>
+    </div>
+
+            </div>
+        </section>
+        {% endblock %}
+                <!-- Scripts -->
+        <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+        <script src="{% static 'chairman\assets\bundles\knob.bundle.js' %}"></script>
+        <script src="{% static 'chairman\assets\js\pages\charts\jquery-knob.js' %}"></script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>

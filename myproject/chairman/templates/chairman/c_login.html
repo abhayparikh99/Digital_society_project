@@ -1,0 +1,111 @@
+﻿{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Login - Oero Laravel</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+        
+        
+        
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        
+        <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\authentication.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+
+        
+    </head>
+    
+    
+        <body class="theme-cyan authentication sidebar-collapse">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
+            <div class="container">        
+                <div class="navbar-translate n_logo">
+                    <a class="navbar-brand" href="javascript:void(0);" title="" target="">Digital Society</a>
+                    <button class="navbar-toggler" type="button">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+                
+            </div>
+        </nav>
+
+        <div class="page-header">
+            <div class="page-header-image" style="background-image:url({% static 'chairman/assets/images/digitalsociety6.jpg' %})"></div>
+
+                <div class="container">
+        <div class="col-md-12 content-center">
+            <div class="card-plain">
+                <form action="{% url 'login-evalute' %}" class="form" method="POST" >
+                    {% csrf_token %}
+                    <div class="header">
+                        <div class="logo-container">
+                            <img src="{% static 'chairman\assets\images\logo.svg' %}" class="zmdi-hc-spin" alt="">
+                        </div>
+                        {% if e_msg %}
+                        <div class="alert alert-danger" role="alert">
+                            {{e_msg}}
+                          </div>
+                        {% endif %}
+                        {% if s_msg %}
+                        <div class="alert alert-success" role="alert">
+                            {{s_msg}}
+                          </div>
+                        {% endif %} 
+                        <h5>Log in</h5>
+                    </div>
+                    <div class="content">   
+                        <div class="form-group mb-6" >
+                            <select class="form-control" style="background-color:rgb(44, 207, 207); color: black;" name="role">
+                                <option disabled selected>Select role:</option>
+                                <option style="color:black;background-color:white;" value="chairman">Chairman</option>
+                                <option style="color:black;background-color:white;" value="member">Member</option>
+                                <option style="color:black;background-color:white;" value="watchman">Watchman</option>
+                            </select>   
+                        </div>                                              
+                        <div class="input-group input-lg">
+                            <input type="text" class="form-control" name="email" placeholder="Enter Email Address">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-account-circle"></i>
+                            </span>
+                        </div>
+                        <div class="input-group input-lg">
+                            <input type="password" placeholder="Password" name="password" class="form-control">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-lock"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footer text-center">
+                        <input type="submit" class="btn btn-primary btn-round btn-lg btn-block " style="color: black;" value="SIGN IN"><br>
+                        <!-- <a class="btn btn-primary btn-round btn-lg btn-block " style="background-color: #00cfd1;color: black;" href="{% url 'forgot-password-page' %}">FORGOT PASSWORD?</a> -->
+                        <h6><a href="{% url 'forgot-password-page' %}" class="font-weight-light"> FORGOT PASSWORD?</a></h6>
+                        <p><a href="{% url 'w_registration_page' %}" class="font-weight-light"> WATCHMAN REGISTRATION</a></p>
+                        <!-- <a class="btn btn-primary btn-round btn-lg btn-block " style="background-color: #00cfd1;color: black;" href="{% url 'w_registration_page' %}">WATCHMAN REGISTRATION</a> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+            <footer class="footer">
+                
+            </footer>
+            
+        </div>
+
+        <!-- Scripts -->
+        <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+                
+    </body>
+</html>

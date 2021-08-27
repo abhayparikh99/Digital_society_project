@@ -1,0 +1,115 @@
+﻿{% extends 'societymember/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        {% block title %}
+        <title>Add Complaint - Digital Society</title>
+        {% endblock %}        
+         
+        {% block css %}
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\dropzone\dropzone.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap-select\css\bootstrap-select.css' %}">
+                    <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+        {% endblock %}
+            </head>
+        {% block content %}
+        
+        <section class="content home" style="margin-top: 38px;">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Add Complaint <small class="text-muted">Welcome to Digital Society</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'm_index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                            <li class="breadcrumb-item">Complaint</li>
+                                                                                        <li class="breadcrumb-item active">Add Complaint</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Complaint</strong> Information <small>Description text here...</small> </h2>
+                    <ul class="header-dropdown">
+                    </ul>
+                </div>
+                <form action="{% url 'm_add_complaint' %}" method="POST">
+                    {% csrf_token %}
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" name="fname" class="form-control" placeholder="Enter Your First Name">
+                            </div>
+                        </div>               
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" name="lname" class="form-control" placeholder="Enter Your Last Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" name="complaint_subject" class="form-control" placeholder="Complaint Subject">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea rows="2" type="text" name="complaint_desc" class="form-control" placeholder="Complaint Description here...."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                        <button type="reset" class="btn btn-default btn-round btn-simple">Cancel</button>
+                    </div>
+                   
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+ 
+
+            </div>
+        </section>
+        {% endblock %}
+                <!-- Scripts -->
+        <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+        <script src="{% static 'chairman\assets\plugins\dropzone\dropzone.js' %}"></script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>
